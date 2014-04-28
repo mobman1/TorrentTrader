@@ -500,9 +500,9 @@ function deletetorrent($id) {
 	$row = @mysql_fetch_assoc(@SQL_Query_exec("SELECT image1,image2 FROM torrents WHERE id=$id"));
 
 	foreach(explode(".","peers.comments.ratings.files.announce") as $x)
-		SQL_Query_exec("DELETE FROM $x WHERE torrent = $id");
-
+	SQL_Query_exec("DELETE FROM $x WHERE torrent = $id");
 	SQL_Query_exec("DELETE FROM completed WHERE torrentid = $id");
+	SQL_Query_exec("DELETE FROM bookmarks WHERE torrentid = $id"); // DELETE FROM bookmarks - mobman
 
     if (file_exists($site_config["torrent_dir"] . "/$id.torrent"))
         unlink($site_config["torrent_dir"] . "/$id.torrent");
@@ -518,20 +518,24 @@ function deletetorrent($id) {
 	@unlink($site_config["nfo_dir"]."/$id.nfo");
 
 	SQL_Query_exec("DELETE FROM torrents WHERE id = $id");
-    SQL_Query_exec("DELETE FROM reports WHERE votedfor = $id AND type = 'torrent'");
+    	SQL_Query_exec("DELETE FROM reports WHERE votedfor = $id AND type = 'torrent'");
 }
 
+// Added DELETE FROM bookmarks and friends by mobman
 function deleteaccount($userid) 
 {
 	SQL_Query_exec("DELETE FROM users WHERE id = $userid");
 	SQL_Query_exec("DELETE FROM warnings WHERE userid = $userid");
 	SQL_Query_exec("DELETE FROM ratings WHERE user = $userid");
 	SQL_Query_exec("DELETE FROM peers WHERE userid = $userid");
-    SQL_Query_exec("DELETE FROM completed WHERE userid = $userid"); 
-    SQL_Query_exec("DELETE FROM reports WHERE addedby = $userid");
-    SQL_Query_exec("DELETE FROM reports WHERE votedfor = $userid AND type = 'user'");
-    SQL_Query_exec("DELETE FROM forum_readposts WHERE userid = $userid");
-    SQL_Query_exec("DELETE FROM pollanswers WHERE userid = $userid");
+    	SQL_Query_exec("DELETE FROM completed WHERE userid = $userid"); 
+    	SQL_Query_exec("DELETE FROM reports WHERE addedby = $userid");
+    	SQL_Query_exec("DELETE FROM reports WHERE votedfor = $userid AND type = 'user'");
+    	SQL_Query_exec("DELETE FROM forum_readposts WHERE userid = $userid");
+    	SQL_Query_exec("DELETE FROM pollanswers WHERE userid = $userid");
+    	SQL_Query_exec("DELETE FROM `friends` WHERE `userid` =  $userid");
+    	SQL_Query_exec("DELETE FROM `friends` WHERE `friendid` =  $userid");
+    	SQL_Query_exec("DELETE FROM bookmarks WHERE userid = $userid"); 
 }
 
 /*
