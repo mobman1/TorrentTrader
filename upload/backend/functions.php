@@ -12,6 +12,19 @@
 
 error_reporting(E_ALL ^ E_NOTICE);
 
+// Block some XSS-Script - mobman
+// Check line 1444 function httperr - remove if not necessary
+/*
+if (preg_match('/(\<( )*script|\<( )*javascript|script\:\/\/)/i', serialize($_GET)))
+	httperr($code = 403, $msg = 'Forbidden');
+else if (preg_match('/(\<( )*script|\<( )*javascript|script\:\/\/)/i', serialize($_POST)))
+	httperr($code = 403, $msg = 'Forbidden');
+else if (preg_match('/(\<( )*script|\<( )*javascript|script\:\/\/)/i', serialize($_COOKIE)))
+	httperr($code = 403, $msg = 'Forbidden');
+else if (preg_match('/(\<( )*script|\<( )*javascript|script\:\/\/)/i', serialize($_SERVER)))
+	httperr($code = 403, $msg = 'Forbidden');
+*/
+
 // Prefer unescaped. Data will be escaped as needed.
 if (ini_get("magic_quotes_gpc")) {
 	$_POST = array_map_recursive("unesc", $_POST);
@@ -1428,6 +1441,13 @@ function long2ip6($ipv6long) {
 
   return inet_ntop(inet_pton(substr($ipv6,0,-1)));
 } 
+
+/*function httperr($code = 404, $msg = 'Page not found') {
+    header('HTTP/1.0 '.$code.' '.$msg);
+    print('<h1>'.$msg.'</h1>'."\n");
+    print('<p>Sorry :/</p>'."\n");
+    exit();
+}*/
 
 function passhash ($text) {
 	GLOBAL $site_config;
