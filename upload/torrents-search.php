@@ -365,9 +365,16 @@ if ($count) {
      
 }
 
+/*
+// Added for the later use
+// How you want to clear a new tag? by mobman
+if ($CURUSER["clear_myself"] == "yes") {
+print("<a href='?clear=1'>Clear a new tags</a>");
+} else {
+*/
 if ($CURUSER)
 	SQL_Query_exec("UPDATE users SET last_browse=".gmtime()." WHERE id=$CURUSER[id]");
-
+//}
 
 end_frame();
 stdfoot();
