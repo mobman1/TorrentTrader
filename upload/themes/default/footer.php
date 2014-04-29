@@ -93,7 +93,7 @@ $file = "".$site_config["cache_dir"]."/cache_usersonlineblock.txt";
 $expire = 10; // time in seconds
 $guests = number_format(getguests());
 $members = number_format(get_row_count("users", "WHERE UNIX_TIMESTAMP('" . get_date_time() . "') - UNIX_TIMESTAMP(users.last_access) < 900"));
-echo "<B> " . $guests . "</b> Guests - <B> " . $members . "</b> Members<br>";
+echo "<b> " . $guests . "</b> Guests - <b> " . $members . "</b> Members<br>";
 $a = @mysql_fetch_assoc(@mysql_query("SELECT id,username FROM users WHERE status='confirmed' ORDER BY id DESC LIMIT 1"));
 if ($CURUSER)
 $latestuser = "<a href=../user/?id=" . $a["id"] . ">" . $a["username"] . "</a>";
@@ -206,7 +206,7 @@ if ($warned) {
 $usersactivetoday++;
 		 }
 	 echo "<div align='left'>" . $todayactive . "</div>";
-echo "<BR>";
+echo "<br />";
 end_frame();
 }
 if ($site_config['DISCLAIMERON']){
