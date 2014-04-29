@@ -1,6 +1,6 @@
 <?php
 //
-//  TorrentTrader v2.x
+//  	TorrentTrader v2.x
 //      $LastChangedDate: 2012-06-12 18:11:36 +0100 (Tue, 12 Jun 2012) $
 //      $LastChangedBy: torrenttrader $
 //
@@ -305,9 +305,12 @@ while (list($key,$value) = each($announce_urls)) {
 if ($site_config["ALLOWEXTERNAL"]){
 	echo "<br /><b>".T_("THIS_SITE_ACCEPTS_EXTERNAL")."</b>";
 }
+
+// Added find only .torrent and .nfo file - mobman
+// accept='.torrent' helps many users
 print ("</td></tr>");
-print ("<tr><td align='right'>" . T_("TORRENT_FILE") . ": </td><td align='left'> <input type='file' name='torrent' size='50' value='" . $_FILES['torrent']['name'] . "' />\n</td></tr>");
-print ("<tr><td align='right'>" .T_("NFO"). ": </td><td align='left'> <input type='file' name='nfo' size='50' value='" . $_FILES['nfo']['name'] . "' /><br />\n</td></tr>");
+print ("<tr><td align='right'>" . T_("TORRENT_FILE") . ": </td><td align='left'> <input type='file' accept='.torrent' name='torrent' size='50' value='" . $_FILES['torrent']['name'] . "' />\n</td></tr>");
+print ("<tr><td align='right'>" .T_("NFO"). ": </td><td align='left'> <input type='file' accept='.nfo' name='nfo' size='50' value='" . $_FILES['nfo']['name'] . "' /><br />\n</td></tr>");
 print ("<tr><td align='right'>" . T_("TORRENT_NAME") . ": </td><td align='left'><input type='text' name='name' size='60' value='" . $_POST['name'] . "' /><br />".T_("THIS_WILL_BE_TAKEN_TORRENT")." \n</td></tr>");
 print ("<tr><td colspan='2' align='center'>".T_("MAX_FILE_SIZE").": ".mksize($site_config['image_max_filesize'])."<br />".T_("ACCEPTED_FORMATS").": ".implode(", ", array_unique($site_config["allowed_image_types"]))."<br /></td></tr><tr><td align='right'>".T_("IMAGE")." 1:&nbsp;&nbsp;</td><td><input type='file' name='image0' size='50' /></td></tr><tr><td align='right'>".T_("IMAGE")." 2:&nbsp;&nbsp;</td><td><input type='file' name='image1' size='50' /></td></tr>");
 
