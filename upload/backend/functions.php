@@ -12,6 +12,19 @@
 
 error_reporting(E_ALL ^ E_NOTICE);
 
+// Block some XSS-Script - mobman
+// Check line 1451 function httperr - remove if not necessary
+/*
+if (preg_match('/(\<( )*script|\<( )*javascript|script\:\/\/)/i', serialize($_GET)))
+httperr($code = 403, $msg = 'Forbidden');
+else if (preg_match('/(\<( )*script|\<( )*javascript|script\:\/\/)/i', serialize($_POST)))
+httperr($code = 403, $msg = 'Forbidden');
+else if (preg_match('/(\<( )*script|\<( )*javascript|script\:\/\/)/i', serialize($_COOKIE)))
+httperr($code = 403, $msg = 'Forbidden');
+else if (preg_match('/(\<( )*script|\<( )*javascript|script\:\/\/)/i', serialize($_SERVER)))
+httperr($code = 403, $msg = 'Forbidden');
+*/
+
 // Prefer unescaped. Data will be escaped as needed.
 if (ini_get("magic_quotes_gpc")) {
 	$_POST = array_map_recursive("unesc", $_POST);
@@ -1433,6 +1446,16 @@ function passhash ($text) {
       stdfoot();
       exit;
   }
+  
+/*
+  function httperr($code = 404, $msg = 'Page not found') {
+	header('HTTP/1.0 '.$code.' '.$msg);
+	print('<h1>'.$msg.'</h1>'."\n");
+	print('<p>Sorry :/</p>'."\n");
+	exit();
+}
+*/
+
  // Max Slots
 function avail_slots($userid, $class)
 {
