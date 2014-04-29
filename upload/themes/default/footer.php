@@ -221,10 +221,10 @@ if ($site_config['DISCLAIMERON']){
         // *************************************************************************************************************************************
         //			PLEASE DO NOT REMOVE THE POWERED BY LINE, SHOW SOME SUPPORT! WE WILL NOT SUPPORT ANYONE WHO HAS THIS LINE EDITED OR REMOVED!
         // *************************************************************************************************************************************
-        print ("<CENTER>Powered by <a href=\"http://www.torrenttrader.org\" target=\"_blank\">TorrentTrader v".$site_config["ttversion"]."</a> - ");
+        print ("<center>Powered by <a href=\"http://www.torrenttrader.org\" target=\"_blank\">TorrentTrader v".$site_config["ttversion"]."</a> - ");
         $totaltime = array_sum(explode(" ", microtime())) - $GLOBALS['tstart'];
         printf("Page generated in %f", $totaltime);
-        print (" - Theme By: <a href=\"http://nikkbu.info\" target=\"_blank\">Nikkbu</a> & <a href=\"https://www.facebook.com/l3oncod3r\" target=\"_blank\">leoncoder</a></CENTER>");
+        print (" - Theme By: <a href=\"http://nikkbu.info\" target=\"_blank\">Nikkbu</a> & <a href=\"https://www.facebook.com/l3oncod3r\" target=\"_blank\">leoncoder</a></center>");
         //
         // *************************************************************************************************************************************
         //			PLEASE DO NOT REMOVE THE POWERED BY LINE, SHOW SOME SUPPORT! WE WILL NOT SUPPORT ANYONE WHO HAS THIS LINE EDITED OR REMOVED!
