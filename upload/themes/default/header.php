@@ -28,7 +28,7 @@
 	$page = $_SERVER['REQUEST_URI'];
 	$page = str_replace("/","",$page);
 	$page = str_replace(".php","",$page);
-	$page = str_replace("svn","",$page);  //-- name if tracker installed in a sub-dir 
+	$page = str_replace("svn","",$page);  // Name if tracker installed in a sub-dir 
 	$page = str_replace("?search=","",$page);
 	$page = $page ? $page : 'index'
 ?>
@@ -71,7 +71,7 @@ $slots = number_format($maxslot) . "/" . number_format($query_slots[0]);
     
     echo " <a class='profile' href='".$site_config["SITEURL"]."/account/'><img src='/images/setting.png' border='none' height='20' width='20' alt='Account Setting' title='Account Setting'></a> <a class='account' href='../user/?id=$CURUSER[id]'><img src='../images/profile.png' border='none' height='20' width='20' alt='Profile' title='Profile'></a> <a class='logout' href=\"".$site_config["SITEURL"]."/account-logout.php\"><img src='../images/logout.png' border='none' height='20' width='20' alt='Logout' title='Logout'></a>";
         
-    //check for new pm's
+    // Check for new pm's
     
     $res = mysql_query("SELECT COUNT(*) FROM messages WHERE receiver=" . $CURUSER["id"] . " and unread='yes' AND location IN ('in','both')") or print(mysql_error());
     
@@ -89,10 +89,9 @@ $slots = number_format($maxslot) . "/" . number_format($query_slots[0]);
     
     }
     
-    //end check for pm's
+    // End check for pm's
     
     }
-    
     ?>
     
     </div>
@@ -101,7 +100,11 @@ $slots = number_format($maxslot) . "/" . number_format($query_slots[0]);
     <div class='header'>
       <div id='logo'><a href='<?php echo $site_config["SITEURL"]; ?>/'><img src='../images/blank.gif' width='360' height='64' /></a></div>
     </div>
+    
+    <?php if ($CURUSER){ // Hide menu for guests. Some folio ok? - mobman ?> 
+    
     <div id='menu'>
+    
       <!-- START NAVIGATION -->
       <ul class='menu'>
         <li><a href='../'><span>Home</span></a></li>
@@ -110,12 +113,13 @@ $slots = number_format($maxslot) . "/" . number_format($query_slots[0]);
         <li><a href='../browse/'><span>Browse</span></a></li>
         <li><a href='../search/'><span>Search</span></a></li>
         <li><a href='../community/'><span>Community</span></a></li>
-   <li><a href='../members/'><span>Members</span></a></li>
-   <li><a href='../latest/'><span>Latest</span></a></li>
-        
-       </ul>
+   	<li><a href='../members/'><span>Members</span></a></li>
+   	<li><a href='../latest/'><span>Latest</span></a></li>
+      </ul>
       <!-- END NAVIGATION -->
+      
     </div>
+    <?php } ?>
   </div>
   <div class='myTable'>
     <div class='myTrow'>
