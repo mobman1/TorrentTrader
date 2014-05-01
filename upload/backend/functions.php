@@ -210,6 +210,12 @@ function logoutcookie() {
 	setcookie("uid", null, time(), "/");
 }
 
+// Hide staff ip by FireKnight - modded by mobman
+if ($row["class"] >= 4) # You can change this to matching your staff id's
+    {
+       $ip = 'Hidden';
+    }
+    
 function stdhead($title = "") {
 	global $site_config, $CURUSER, $THEME, $LANGUAGE;  //Define globals
  
